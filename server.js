@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+const config = require("./app/config/config.js");
 const app = express();
 
 var corsOptions = {
@@ -16,8 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
+db.sequelize.sync({ force: false, alter: true }).then(() => {
+  console.log(" re-sync db.");
 });
 
 // simple route
@@ -26,9 +26,10 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/user.routes")(app);
+require("./app/routes/post.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = config.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
