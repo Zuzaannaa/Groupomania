@@ -1,0 +1,12 @@
+.Background {
+  background-image: url("../../assets/icon-above-font.png");
+  height: 800px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: initial;
+  position: relative;
+}
+
+.Presentation {
+  margin-top: 20px;
+}
