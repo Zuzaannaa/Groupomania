@@ -103,7 +103,7 @@ const PostList = () => {
         </ul>
 
         <button className="m-3 btn btn-sm btn-danger" onClick={removeAllPost}>
-          Tout supprimer
+          Delete All
         </button>
       </div>
       <div className="col-md-6">

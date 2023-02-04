@@ -10,12 +10,9 @@ const Profile = () => {
     <div className="container">
       <header>
         <h1>
-          <strong>You are logged in as {currentUser.email}</strong>
+          <strong>You are logged in!</strong>
         </h1>
       </header>
-      <p>
-        <strong>Your id :</strong> {currentUser.id}
-      </p>
     </div>
   );
 };
