@@ -13,7 +13,9 @@ module.exports = (app) => {
   //router.get("/:id", auth, post.getOnePost);
 
   //get all posts
-  router.get("/", auth, post.findAll);
+  //router.get("/", auth, post.findAll); ADD BACK!
+
+  router.get("/", post.findAll);
 
   app.use("/api/posts", router);
 

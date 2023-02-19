@@ -32,7 +32,7 @@ exports.createPost = (req, res, next) => {
 
   exports.getOnePost = (req, res, next) => {
     const id = req.params.id;
-    Posts.findByPk(id)
+    Post.findByPk(id)
       .then((data) => {
         res.send(data);
       })
@@ -45,7 +45,7 @@ exports.createPost = (req, res, next) => {
 };
 
 exports.findAll = (req, res, next) => {
-  Posts.findAll({
+  Post.findAll({
     include: [{ model: User }],
     order: [
       ["updatedAt", "DESC"],

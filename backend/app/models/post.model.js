@@ -35,3 +35,5 @@ module.exports = (sequelize, Sequelize, user) => {
   );
   return Posts;
 };
+
+//foreign key relationship userId
