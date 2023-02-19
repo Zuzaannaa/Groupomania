@@ -18,17 +18,18 @@ const AddPost = () => {
 
   const savePost = () => {
     const data = {
-      title: post.title,
-      description: post.description,
+      userId: 5,
+      //title: post.title,
+      message: post.description,
     };
 
     PostService.create(data)
       .then((response) => {
         setPost({
-          id: response.data.id,
-          title: response.data.title,
-          description: response.data.description,
-          published: response.data.published,
+          userId: 5, //response.data.userId,
+          message: response.data.description,
+          //description: response.data.description,
+          //published: response.data.published,
         });
         setSubmitted(true);
         console.log(response.data);
@@ -55,7 +56,7 @@ const AddPost = () => {
       ) : (
         <div>
           <div className="form-group">
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title">User Id</label>
             <input
               type="text"
               className="form-control"
@@ -68,7 +69,7 @@ const AddPost = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description">Message</label>
             <input
               type="text"
               className="form-control"
@@ -81,7 +82,7 @@ const AddPost = () => {
           </div>
 
           <button onClick={savePost} className="btn btn-success">
-            Poster
+            Post
           </button>
         </div>
       )}

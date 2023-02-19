@@ -68,7 +68,7 @@ const PostList = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Rechercher par titre"
+            placeholder="Search title"
             value={searchTitle}
             onChange={onChangeSearchTitle}
           />
@@ -78,13 +78,13 @@ const PostList = () => {
               type="button"
               onClick={findByTitle}
             >
-              Rechercher
+              Search
             </button>
           </div>
         </div>
       </div>
       <div className="col-md-6">
-        <h4>Bonne lecture</h4>
+        <h4>All Posts</h4>
 
         <ul className="list-group">
           {posts &&
