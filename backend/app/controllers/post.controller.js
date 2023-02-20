@@ -1,8 +1,8 @@
 const db = require("../models");
 const User = db.users;
 const Post = db.posts;
-const Op = db.Sequelize.Op;
-const config = require("../config/config");
+//const Op = db.Sequelize.Op;
+//const config = require("../config/config");
 
 exports.createPost = (req, res, next) => {
   const post = new Post({

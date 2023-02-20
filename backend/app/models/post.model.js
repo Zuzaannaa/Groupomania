@@ -1,7 +1,38 @@
+/*"use strict";
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class Post extends Model {
+    static associate(models) {
+      Post.belongsTo(models.User, {
+        onDelete: "cascade",
+        foreignKey: { name: "id", allowNull: false },
+        hooks: true,
+      });
+    }
+  }
+  Post.init(
+    {
+      message: DataTypes.STRING,
+      image: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "Post",
+    }
+  );
+  return Post;
+}; */
+
 module.exports = (sequelize, Sequelize, user) => {
   const Posts = sequelize.define(
     "post",
     {
+      id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        unique: true,
+      },
       message: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -12,28 +43,19 @@ module.exports = (sequelize, Sequelize, user) => {
         allowNull: true,
         required: false,
       },
-      userId: {
-        type: Sequelize.INTEGER(11),
-        allowNull: false,
-        requierd: true,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-      },
     },
     {
       tableName: "Posts",
       freezeTableName: true,
     }
   );
+
+  Posts.associate = function (models) {
+    Posts.belongsTo(models.User, {
+      foreignKey: "id",
+      as: "author",
+      onDelete: "cascade",
+    });
+  };
   return Posts;
 };
-
-//foreign key relationship userId

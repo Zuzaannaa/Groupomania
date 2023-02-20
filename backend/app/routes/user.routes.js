@@ -5,6 +5,7 @@ module.exports = (app) => {
 
   router.post("/signup", users.signup);
   router.post("/login", users.login);
+  router.delete("/:id", users.delete);
   app.use("/api/users", router);
 
   console.log("user route loaded");
