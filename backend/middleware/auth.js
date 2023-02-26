@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const config = require("../app/config/config");
 
 module.exports = (req, res, next) => {
   //lots of things might go wrond so try catch

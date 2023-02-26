@@ -69,3 +69,17 @@ exports.delete = (req, res) => {
     (error) => res.status(500).json(error);
   }
 };
+
+/*exports.delete = (req, res) => {
+  console.log("User Id", req.params.id);
+  try {
+    User.delete({ where: { id: req.params.id } })
+      .then(() => {
+        console.log("User deleted");
+        res.status(200);
+      })
+      .catch((error) => res.status(400).json(error));
+  } catch {
+    (error) => res.status(500).json(error);
+  }
+}; */

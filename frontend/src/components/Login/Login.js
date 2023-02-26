@@ -1,10 +1,12 @@
 import React, { useState, useRef } from "react";
+import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
-import AuthService from "../../service/auth.service";
+//import AuthService from "../../service/auth.service";
 
 const required = (value) => {
   if (!value) {
@@ -22,6 +24,7 @@ const Login = (props) => {
   const checkBtn = useRef();
 
   const [email, setEmail] = useState("");
+  //const [user, setUser] = useState();
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -36,7 +39,7 @@ const Login = (props) => {
     setPassword(password);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     setMessage("");
@@ -45,7 +48,22 @@ const Login = (props) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.login(email, password).then(
+      const user = { email, password };
+      // send the username and password to the server
+      const response = await axios.post(
+        "http://localhost:8080/api/users/login",
+        user
+      );
+      // set the state of the user
+      //setUser(response.data);
+      // store the user in localStorage
+      localStorage.setItem("user", JSON.stringify(response.data));
+      console.log(response.data);
+    }
+    navigate("/add");
+    window.location.reload();
+  };
+  /*AuthService.login(email, password).then(
         () => {
           navigate("/add");
           window.location.reload();
@@ -61,11 +79,11 @@ const Login = (props) => {
           setLoading(false);
           setMessage(resMessage);
         }
-      );
-    } else {
+      );*/
+  /*} else {
       setLoading(false);
     }
-  };
+  }; */
 
   return (
     <div className="col-md-12">
