@@ -41,8 +41,8 @@ const Navbar = () => {
         <div className="Navbar__links">
           {currentUser && (
             <li className="Navbar__item">
-              <Link to="articles">Read the post</Link>
-              <Link to="add">Write a post</Link>
+              <Link to="posts">Read the posts</Link>
+              <Link to="add">Add a post</Link>
             </li>
           )}
         </div>
@@ -50,11 +50,13 @@ const Navbar = () => {
         {currentUser ? (
           <div className="Navbar__links">
             <li>
-              <Link to="profile">Welcome {currentUser.email} !</Link>
+              <Link to="profile" onClick={AuthService.remove}>
+                Delete Account
+              </Link>
             </li>
             <li className="Navbar__item">
               <a href="/login" onClick={logOut}>
-                Logged Out
+                Log Out
               </a>
             </li>
           </div>

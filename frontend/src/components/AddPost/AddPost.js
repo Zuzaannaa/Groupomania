@@ -18,15 +18,15 @@ const AddPost = () => {
 
   const savePost = () => {
     const data = {
-      userId: 5,
-      //title: post.title,
+      title: post.title,
       message: post.description,
     };
 
     PostService.create(data)
       .then((response) => {
         setPost({
-          userId: 5, //response.data.userId,
+          userId: response.data.userId,
+          title: response.data.title,
           message: response.data.description,
           //description: response.data.description,
           //published: response.data.published,
@@ -56,7 +56,7 @@ const AddPost = () => {
       ) : (
         <div>
           <div className="form-group">
-            <label htmlFor="title">User Id</label>
+            <label htmlFor="title">Title</label>
             <input
               type="text"
               className="form-control"

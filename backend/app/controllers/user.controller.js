@@ -38,7 +38,7 @@ exports.login = (req, res) => {
             return res.status(401).json({ error: "Incorrect password" });
           }
           let token_gen = jwt.sign(
-            { userId: user._id },
+            { userId: user.id },
             //"123456",
 
             `${config.JWT_TOKEN}`,
@@ -46,7 +46,8 @@ exports.login = (req, res) => {
           );
 
           res.status(200).json({
-            userId: user._id,
+            userId: user.id,
+
             token: token_gen,
             message: "User logged in!",
           });

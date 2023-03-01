@@ -10,7 +10,7 @@ const Profile = () => {
     <div className="container">
       <header>
         <h1>
-          <strong>You are logged in!</strong>
+          <strong>Account Deleted!</strong>
         </h1>
       </header>
     </div>

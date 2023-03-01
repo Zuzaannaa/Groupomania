@@ -53,8 +53,8 @@ const PostList = () => {
   const findByTitle = () => {
     PostService.findByTitle(searchTitle)
       .then((response) => {
-        setPost(response.data);
-        console.log(response.data);
+        setPost(JSON.stringify(response.data));
+        console.log(JSON.stringify(response.data));
       })
       .catch((e) => {
         console.log(e);
@@ -96,7 +96,7 @@ const PostList = () => {
                 onClick={() => setActivePost(post, index)}
                 key={index}
               >
-                {post.title + " : "}
+                {post.message + " : "}
                 {post.description}
               </li>
             ))}
