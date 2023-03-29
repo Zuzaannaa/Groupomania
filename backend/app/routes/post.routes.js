@@ -1,5 +1,7 @@
+const express = require("express");
+const path = require("path");
 module.exports = (app) => {
-  //const multer = require("../middleware/multer-config");
+  const multer = require("../../middleware/multer-config");
   var router = require("express").Router();
   const post = require("../controllers/post.controller.js");
 
@@ -18,6 +20,7 @@ module.exports = (app) => {
   router.get("/", post.findAll);
 
   app.use("/api/posts", router);
+  app.use("/images", express.static(path.join(__dirname, "images")));
 
   console.log("post route loaded");
 };

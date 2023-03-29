@@ -1,6 +1,5 @@
 const db = require("../models");
 const User = db.users;
-//const Op = db.Sequelize.Op;
 const config = require("../config/config");
 
 const bcrypt = require("bcrypt");
@@ -37,17 +36,12 @@ exports.login = (req, res) => {
           if (!valid) {
             return res.status(401).json({ error: "Incorrect password" });
           }
-          let token_gen = jwt.sign(
-            { userId: user.id },
-            //"123456",
-
-            `${config.JWT_TOKEN}`,
-            { expiresIn: "24h" }
-          );
+          let token_gen = jwt.sign({ userId: user.id }, `${config.JWT_TOKEN}`, {
+            expiresIn: "24h",
+          });
 
           res.status(200).json({
             userId: user.id,
-
             token: token_gen,
             message: "User logged in!",
           });
@@ -70,17 +64,3 @@ exports.delete = (req, res) => {
     (error) => res.status(500).json(error);
   }
 };
-
-/*exports.delete = (req, res) => {
-  console.log("User Id", req.params.id);
-  try {
-    User.delete({ where: { id: req.params.id } })
-      .then(() => {
-        console.log("User deleted");
-        res.status(200);
-      })
-      .catch((error) => res.status(400).json(error));
-  } catch {
-    (error) => res.status(500).json(error);
-  }
-}; */

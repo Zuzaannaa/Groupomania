@@ -64,26 +64,6 @@ const PostList = () => {
   return (
     <div>
       <div className="col-md-6">
-        <div className="input-group mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search title"
-            value={searchTitle}
-            onChange={onChangeSearchTitle}
-          />
-          <div className="input-group-append">
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              onClick={findByTitle}
-            >
-              Search
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="col-md-6">
         <h4>All Posts</h4>
 
         <ul className="list-group">
@@ -96,15 +76,12 @@ const PostList = () => {
                 onClick={() => setActivePost(post, index)}
                 key={index}
               >
-                {post.message + " : "}
-                {post.description}
+                {post.message}
+                {post.image}
+                {/*{post.description}*/}
               </li>
             ))}
         </ul>
-
-        <button className="m-3 btn btn-sm btn-danger" onClick={removeAllPost}>
-          Delete All
-        </button>
       </div>
       <div className="col-md-6">
         {currentPost ? (
@@ -114,19 +91,19 @@ const PostList = () => {
               <label>
                 <strong>Title:</strong>
               </label>{" "}
-              {currentPost.title}
+              {currentPost.message}
             </div>
             <div>
               <label>
-                <strong>Description:</strong>
+                <strong>Image:</strong>
               </label>{" "}
-              {currentPost.description}
+              {currentPost.image}
             </div>
             <div>
               <label>
                 <strong>Status:</strong>
               </label>{" "}
-              {currentPost.published ? "Published" : "Pending"}
+              {currentPost.published ? "Read" : "New"}
             </div>
 
             <Link

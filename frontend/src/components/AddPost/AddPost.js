@@ -4,8 +4,8 @@ import PostService from "../../service/post.service";
 const AddPost = () => {
   const initialPostState = {
     id: null,
-    title: "",
     description: "",
+    image: "",
     published: false,
   };
   const [post, setPost] = useState(initialPostState);
@@ -18,18 +18,18 @@ const AddPost = () => {
 
   const savePost = () => {
     const data = {
-      title: post.title,
       message: post.description,
+      image: post.image,
     };
 
     PostService.create(data)
       .then((response) => {
         setPost({
           userId: response.data.userId,
-          title: response.data.title,
           message: response.data.description,
+          image: response.data.image,
           //description: response.data.description,
-          //published: response.data.published,
+          published: response.data.published,
         });
         setSubmitted(true);
         console.log(response.data);
@@ -55,7 +55,7 @@ const AddPost = () => {
         </div>
       ) : (
         <div>
-          <div className="form-group">
+          {/*} <div className="form-group">
             <label htmlFor="title">Title</label>
             <input
               type="text"
@@ -66,7 +66,7 @@ const AddPost = () => {
               onChange={handleInputChange}
               name="title"
             />
-          </div>
+      </div> */}
 
           <div className="form-group">
             <label htmlFor="description">Message</label>
@@ -81,6 +81,18 @@ const AddPost = () => {
             />
           </div>
 
+          <div className="form-group">
+            <label htmlFor="description">Image</label>
+            <input
+              type="file"
+              className="form-control"
+              id="description"
+              required
+              value={post.image}
+              onChange={handleInputChange}
+              name="description"
+            />
+          </div>
           <button onClick={savePost} className="btn btn-success">
             Post
           </button>

@@ -39,7 +39,7 @@ module.exports = (sequelize, Sequelize, user) => {
         required: true,
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.BLOB,
         allowNull: true,
         required: false,
       },

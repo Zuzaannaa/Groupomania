@@ -29,7 +29,7 @@ const logout = () => {
 };
 
 const remove = () => {
-  return axios.delete(API_URL + "");
+  return axios.delete(API_URL + localStorage.getItem("user.userId"));
 };
 
 const getCurrentUser = () => {

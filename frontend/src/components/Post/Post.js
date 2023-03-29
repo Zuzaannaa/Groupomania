@@ -38,8 +38,8 @@ const Post = (props) => {
   const updatePublished = (status) => {
     const data = {
       id: currentPost.id,
-      title: currentPost.title,
-      description: currentPost.description,
+      message: currentPost.description,
+      immage: currentPost.immage,
       published: status,
     };
 
@@ -117,20 +117,16 @@ const Post = (props) => {
               className="badge badge-primary mr-2"
               onClick={() => updatePublished(false)}
             >
-              UnPublish
+              New
             </button>
           ) : (
             <button
               className="badge badge-primary mr-2"
               onClick={() => updatePublished(true)}
             >
-              Publish
+              Read
             </button>
           )}
-
-          <button className="badge badge-danger mr-2" onClick={deletePost}>
-            Delete
-          </button>
 
           <button
             type="submit"
